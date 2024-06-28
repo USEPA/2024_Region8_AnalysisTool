@@ -25,12 +25,8 @@ criteria_table <- read_xlsx(here::here('Data', 'CriteriaTable_v3_ycw5.xlsx')) %>
 flow_dates <- read_xlsx(here::here('Data', 'highflowdates.xlsx'))
 
 ####Filter data####
-parameters <- criteria_table %>%
-  select(Constituent) %>%
-  unique()
-
+#Only want relevant metals
 samples_filtered <- samples %>%
-  filter(CharacteristicName %in% parameters$Constituent) %>%
   filter(CharacteristicName %in% c('Aluminum',
                                    'Arsenic',
                                    'Cadmium',
@@ -45,6 +41,7 @@ samples_filtered <- samples %>%
 
 
 ####Spatial Join MLs to ER3####
+#Make monitoring locations into a spatial object
 mls_filtered_spatial <- samples_filtered %>%
   select(MonitoringLocationIdentifier, LongitudeMeasure, LatitudeMeasure) %>%
   unique() %>%
@@ -52,9 +49,11 @@ mls_filtered_spatial <- samples_filtered %>%
   st_set_crs(4617) %>% #NAD83 EPSG
   st_transform(st_crs(er3))
 
+#Identify which ER3 the ML is in
 mls_w_er3 <- mls_filtered_spatial %>%
   st_intersection(er3)
 
+#Attach ER3 to sample data
 sample_w_er3 <- samples_filtered %>%
   right_join(mls_w_er3, by = c('MonitoringLocationIdentifier'))
 
@@ -69,13 +68,11 @@ list_aus <- samples_filtered %>%
 
 ####Pull relevant data by AU####
 
-#MAKE INTO LOOP
-# test_au <- list_aus[1]
-
 for(i in list_aus[1:5]) {
 
   print(i)
   
+  #Pull data for relevant AU and change text case
   au_sample_pull <- sample_w_er3 %>%
     filter(AU_ID == i) %>%
     #Convert all caps to title case
@@ -83,12 +80,13 @@ for(i in list_aus[1:5]) {
            TADA.ResultSampleFractionText = ifelse(TADA.ResultSampleFractionText == 'Total',
                                                   'Total Recoverable',
                                                   TADA.ResultSampleFractionText))
-  
+  #Pull the ER3 for the AU
   au_er3 <- au_sample_pull %>%
     select(US_L3NAME) %>%
     unique() %>%
     pull()
   
+  #Find the high flow start and end dates
   hf_start <- flow_dates %>%
     filter(US_L3NAME == au_er3) %>%
     select(StartDate) %>%
@@ -99,24 +97,29 @@ for(i in list_aus[1:5]) {
     select(EndDate) %>%
     pull()
   
+  #Identify the constituents and their fractions in this AU
   au_constituents <- au_sample_pull %>%
     select(CharacteristicName, TADA.ResultSampleFractionText) %>%
     unique() %>%
     #Convert all caps to title case
     mutate(TADA.ResultSampleFractionText = str_to_title(TADA.ResultSampleFractionText))
   
+  #Pull relevant standards
   au_standards <- criteria_table %>%
     filter(Constituent %in% au_constituents$CharacteristicName)
   
+  #Combine all identified constituents/fractions with their standards
   combine_stands_const <- au_constituents %>% 
     right_join(au_standards, by = c('CharacteristicName' = 'Constituent',
                                    'TADA.ResultSampleFractionText' = 'Fraction')) 
   
+  #Combine all relevant samples with their standards for analysis
   combine_samples_stands <- au_sample_pull %>%
     right_join(combine_stands_const, by = c('CharacteristicName',
                                             'TADA.ResultSampleFractionText')) %>%
     mutate(doy = lubridate::yday(ActivityStartDate)) 
   
+  #Identify uses for the AU
   au_uses <- au_standards %>%
     select(Use) %>%
     filter(Use != 'Trigger Value') %>%
@@ -149,13 +152,13 @@ for(i in list_aus[1:5]) {
     as.data.frame()
   colnames(columns_hh_use_to_add) <- missing_params_names
   
-  
+  #Initialize list for loop
   summary_table_list <- list()
   counter <- 1
   
+  #Loop through uses
   for(j in au_uses){
-    #MAKE INTO NESTED LOOP
-    # test_use <- au_uses[1]
+
     if(j == 'Aquatic Life') {
     summary_table <- combine_samples_stands %>%
       filter(Use %in% j) %>%
@@ -216,12 +219,15 @@ for(i in list_aus[1:5]) {
         unique()
     }
     
+    #Pull column names
     table_col_names <- colnames(summary_table)
     
+    #Pull constituent names
     constituent_names <- summary_table %>%
       select(CharacteristicName) %>%
       pull()
     
+    #Transpose table, rename columns, and remove unnecessary row
     summary_table_wide <- as_tibble(t(summary_table)) 
     colnames(summary_table_wide) <- constituent_names
     summary_table_wide <- summary_table_wide %>%
@@ -272,9 +278,9 @@ for(i in list_aus[1:5]) {
     
     summary_table_list[[counter]] <- summary_table_wide
     counter <- counter + 1
-    # write_xlsx(summary_table_wide, here::here('output',paste0(i, '_',j, '.xlsx')))
   }
   
+  #Write to same tab in an excel workbook
   wb <- createWorkbook()
   addWorksheet(wb, "Summary_Metals")
   
