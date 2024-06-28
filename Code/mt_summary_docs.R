@@ -19,7 +19,7 @@ samples <- read_csv(here::here('Data', 'WQP_data_AU_2024-06-26.csv'))
 er3 <- st_read(here::here('Data', 'MT_ecoregion_lv3.shp')) %>%
   select(US_L3NAME)
 
-criteria_table <- read_xlsx(here::here('Data', 'CriteriaTable_v3_ycw3.xlsx')) %>%
+criteria_table <- read_xlsx(here::here('Data', 'CriteriaTable_v3_ycw5.xlsx')) %>%
   filter(State == 'Montana')
 
 flow_dates <- read_xlsx(here::here('Data', 'highflowdates.xlsx'))
@@ -34,6 +34,7 @@ samples_filtered <- samples %>%
   filter(CharacteristicName %in% c('Aluminum',
                                    'Arsenic',
                                    'Cadmium',
+                                   'Chromium',
                                    'Copper',
                                    'Iron',
                                    'Lead',
@@ -124,7 +125,7 @@ for(i in list_aus[1:5]) {
   
   #Determine which parameters are missing, create columns for them to 
   #cbind to final table
-  parameters <- c('Aluminum','Arsenic', 'Cadmium','Copper', 'Iron',
+  parameters <- c('Aluminum','Arsenic', 'Cadmium','Chromium', 'Copper', 'Iron',
                   'Lead','Selenium','Silver', 'Zinc','Mercury')
   
   missing_params <- which(!parameters %in% au_constituents$CharacteristicName)
@@ -232,6 +233,12 @@ for(i in list_aus[1:5]) {
     #Adding missing columns if necessary
     if(j == 'Aquatic Life' & nrow(columns_aq_use_to_add) > 0) {
       
+      #No Chromium in Aquatic Use tables
+      if('Chromium' %in% colnames(columns_aq_use_to_add)) {
+        columns_aq_use_to_add <- columns_aq_use_to_add %>%
+          select(!Iron)
+      }
+      
       summary_table_wide <- summary_table_wide %>%
         cbind(columns_aq_use_to_add) 
       
@@ -242,6 +249,7 @@ for(i in list_aus[1:5]) {
       
     } else if (j == 'Human Health' & nrow(columns_hh_use_to_add) > 0){
       
+      #No iron or aluminum in human health tables
       if('Iron' %in% colnames(columns_hh_use_to_add)) {
         columns_hh_use_to_add <- columns_hh_use_to_add %>%
           select(!Iron)
