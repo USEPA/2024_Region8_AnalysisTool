@@ -242,7 +242,7 @@ for(i in list_aus[1:5]) {
       #No Chromium in Aquatic Use tables
       if('Chromium' %in% colnames(columns_aq_use_to_add)) {
         columns_aq_use_to_add <- columns_aq_use_to_add %>%
-          select(!Iron)
+          select(!Chromium)
       }
       
       summary_table_wide <- summary_table_wide %>%
