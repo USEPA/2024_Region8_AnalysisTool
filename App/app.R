@@ -104,7 +104,7 @@ tab_Analysis                   <- source("external/tab_Analysis.R"
 
 path_results <- "Results"
 
-url_au_table <- "https://github.com/ycwwang/2024_Region8_AssessmentTool/raw/master/data/"
+url_au_table <- "https://github.com/eam-group/2024_Region8_AssessmentTool/raw/main/App/data"
 url_au_table2 <- file.path(url_au_table, "MonLoc_to_AU_Crosswalk_20240415.xlsx")
 temp_au_table <- tempfile(fileext = ".xlsx")
 httr::GET(url_au_table2, httr::write_disk(temp_au_table))
