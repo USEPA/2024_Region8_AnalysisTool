@@ -1,0 +1,125 @@
+"MonitoringLocationIdentifier","State","MonitoringLocationName","MonitoringLocationTypeName","LatitudeMeasure","LongitudeMeasure"
+"USGS-463138110580001","Montana",NA,"Stream",46.52708889,-110.9666306
+"USGS-06076600","Montana",NA,"Stream",46.7033611,-111.192225
+"USGS-06076560","Montana",NA,"Stream",46.59105,-111.0576861
+"USGS-06075900","Montana",NA,"Stream",46.5868872,-111.054665
+"USGS-06076550","Montana",NA,"Stream",46.59188755,-111.0491093
+"USGS-06075785","Montana",NA,"Stream",46.52327426,-110.9563249
+"USGS-06076580","Montana",NA,"Stream",46.63244447,-111.0916123
+"USGS-464033111083501","Montana",NA,"Stream",46.67577878,-111.1438378
+"USGS-464508111100301","Montana",NA,"Stream",46.75230556,-111.1675278
+"USGS-464430111130201","Montana",NA,"Stream",46.74175,-111.2170833
+"USGS-06076690","Montana",NA,"Stream",46.7958,-111.1785556
+"USGS-464506111095801","Montana",NA,"Stream",46.75163889,-111.1660278
+"USGS-06076590","Montana",NA,"Stream",46.6784861,-111.1939194
+"USGS-463504111154601","Montana",NA,"Stream",46.58434167,-111.2626806
+"USGS-464753110542301","Montana",NA,"Stream",46.79805556,-110.9063889
+"USGS-463605111120501","Montana",NA,"Stream",46.6014194,-111.2012667
+"MDEQ_WQ_WQX-M11BELTC70","Montana","Belt Creek off Hwy 89","River/Stream",47.04308,-110.79143
+"MDEQ_WQ_WQX-M10SHEPC06","Montana","Sheep Creek about 1 mile upstream of Moose Creek","River/Stream",46.79281,-110.91112
+"MDEQ_WQ_WQX-M10MOOSC07","Montana","Moose Creek at Moose Creek Campground","River/Stream",46.8339,-110.8767
+"MTNWE-MM-10","Montana","Missouri River downstream from Great Falls Dams","River/Stream",47.58168,-111.06024
+"MTNWE-MM-9","Montana","Missouri River at Central Ave Bridge, upstream from Great Falls Reservoirs","River/Stream",47.50678,-111.31251
+"MTVOLWQM_WQX-MO_CASCADE","Montana","Missouri River at Cascade FAS","River/Stream",47.28062,-111.69113
+"MTVOLWQM_WQX-MO_CRAIG","Montana","Missouri River side channel upstream from Lone Tree FAS","River/Stream",47.05415,-111.96701
+"MTVOLWQM_WQX-MO_DEAR_DS","Montana","Missouri River downstream confluence with Dearborn River","River/Stream",47.12791,-111.9109
+"MTVOLWQM_WQX-MO_DEAR_US","Montana","Missouri River upstream confluence with Dearborn River","River/Stream",47.12819,-111.91174
+"MTVOLWQM_WQX-MO_HARDY","Montana","Missouri River upstream of Sheep Creek at Hardy Bridge","River/Stream",47.16781,-111.83366
+"MTVOLWQM_WQX-MO_LPPC_DS","Montana","Missouri River downstream confluence with Little Prickly Pear Creek","River/Stream",47.02345,-112.01523
+"MDEQ_WQ_WQX-M13SUNR64","Montana","Sun River below Pishkun Canal","River/Stream",47.61764,-112.69146
+"MTWTRSHD_WQX-SUN-ADBEC01","Montana","Adobe Creek at Fort Shaw","River/Stream",47.509722,-111.799167
+"MTWTRSHD_WQX-SUN-DUCKC01","Montana","Duck Creek at county road","River/Stream",47.516111,-111.886111
+"MTWTRSHD_WQX-SUN-MILCU01","Montana","Mill Coulee at highway","River/Stream",47.545,-111.709167
+"MTWTRSHD_WQX-SUN-MUDYC02","Montana","Muddy Creek","River/Stream",47.56762,-111.5503
+"MTWTRSHD_WQX-SUN-SUNR50","Montana","Sun River at Great Falls","River/Stream",47.4925,-111.319444
+"MTWTRSHD_WQX-SUN-SUNR51","Montana","Sun River at Ulm bridge","River/Stream",47.546944,-111.528333
+"MTWTRSHD_WQX-SUN-SUNR56","Montana","Sun River at Augusta","River/Stream",47.547222,-112.362222
+"MDEQ_WQ_WQX-M10SMTHR06","Montana","Smith River at Camp Baker, upstream Sheep Creek confluence","River/Stream",46.80217,-111.18026
+"MDEQ_WQ_WQX-M10CMASC04","Montana","Camas Creek at Hwy 360","River/Stream",46.67824,-111.19388
+"MDEQ_WQ_WQX-M12MISSR97","Montana","Missouri River just upstream Lone Tree Fishing Access","River/Stream",47.0563,-111.96747
+"MDEQ_WQ_WQX-M12MISSR75","Montana","Missouri River at Cascade Fishing Access","River/Stream",47.28156,-111.68991
+"MDEQ_WQ_WQX-M12MISSR35","Montana","Missouri River at Ryan Dam reservoir","River/Stream",47.57811,-111.08309
+"MDEQ_WQ_WQX-M12MISSR40","Montana","Missouri River at upper reservoir (Ryan Dam)","River/Stream",47.55513,-111.14217
+"MTVOLWQM_WQX-HAB-MISSRBWB","Montana","Missouri River near Broadwater Bay","River/Stream",47.499964,-111.307761
+"MDEQ_WQ_WQX-M14GRENG03","Montana","Green Gulch near mouth","River/Stream",47.85682,-112.75741
+"MDEQ_WQ_WQX-M13FORNF04","Montana","Ford Creek North Fork below waterfall","River/Stream",47.41784,-112.71114
+"MDEQ_WQ_WQX-M12MISSR20","Montana","Missouri River at Mountain Palace FAS","River/Stream",47.16259,-111.823733
+"MDEQ_WQ_WQX-M12MISSR22","Montana","Missouri River just u/s of Sacajawea Island","River/Stream",47.513649,-111.3084
+"MDEQ_WQ_WQX-M12MISSR43","Montana","Missouri River at Rainbow Dam Tailrace","River/Stream",47.53405,-111.19879
+"MDEQ_WQ_WQX-M12MISSR08","Montana","Missouri River near Morony Dam","River/Stream",47.58581,-111.06059
+"MDEQ_WQ_WQX-M12MISSR10","Montana","Missouri River near Loma, MT","River/Stream",47.91465,-110.49796
+"MDEQ_WQ_WQX-M17WILOC05","Montana","Willow Creek south of Galata","River/Stream",48.46243,-111.36624
+"MDEQ_WQ_WQX-M10CMASC01","Montana","Camas Creek at mouth","River/Stream",46.70431,-111.19278
+"MDEQ_WQ_WQX-M10SMRNF01","Montana","Smith River North Fork upstream of confluence","River/Stream",46.52709,-110.96663
+"MDEQ_WQ_WQX-M10SMRSF03","Montana","Smith River South Fork at Slaughter House Ln crossing, u/s Cooks Creek","River/Stream",46.52401,-110.97232
+"MDEQ_WQ_WQX-M10NEWLC03","Montana","Newlan Creek upstream of confluence with Smith River","River/Stream",46.59051,-111.04958
+"MDEQ_WQ_WQX-M10BENTG01","Montana","Benton Gulch at mouth and upstream confluence with Smith","River/Stream",46.70551,-111.19429
+"MDEQ_WQ_WQX-M10BEVRC14","Montana","Beaver Creek at Clear Range Rd crossing","River/Stream",46.74175,-111.21706
+"MDEQ_WQ_WQX-BKK130","Montana","Smith River below Devil's bridge","River/Stream",46.828,-111.1924
+"MDEQ_WQ_WQX-M10SHEPC01","Montana","Sheep Creek near mouth","River/Stream",46.80718,-111.16107
+"MDEQ_WQ_WQX-M10SMTHR74","Montana","Smith River at Fort Logan FAS","River/Stream",46.72802,-111.17576
+"MDEQ_WQ_WQX-M10SMTHR05B","Montana","Smith River on state land just upstream of mouth","River/Stream",47.39994,-111.48016
+"MDEQ_WQ_WQX-M10SMTHR01","Montana","Smith River at Eden Bridge","River/Stream",47.23615,-111.3888
+"MDEQ_WQ_WQX-M10SMTHR40","Montana","Smith River at Castle Bar Road","River/Stream",46.97724,-111.28577
+"MDEQ_WQ_WQX-M10SMTHR95","Montana","Smith River at Birch Creek Road","River/Stream",46.54844,-111.00903
+"MDEQ_WQ_WQX-M12MISSR15","Montana","Missouri River at Central Avenue bridge in Great Falls","River/Stream",47.5083,-111.3094
+"MDEQ_WQ_WQX-M12MISSR47","Montana","Missouri River just downstream of Black Eagle Dam Tailrace","River/Stream",47.52128,-111.25749
+"MDEQ_WQ_WQX-M12MISSR41","Montana","Missouri River downstream Cochrane Dam Turbine Discharge","River/Stream",47.55413,-111.14826
+"MDEQ_WQ_WQX-M12MISSR38","Montana","Missouri River at Ryan Dam Tailrace","River/Stream",47.56662,-111.11597
+"MDEQ_WQ_WQX-M12MISSR13","Montana","Missouri River at Fort Benton, at USGS gage","River/Stream",47.81744,-110.66698
+"MDEQ_WQ_WQX-M18MARIR08","Montana","Marias River at Loma downstream of Loma Bridge","River/Stream",47.931389,-110.506944
+"MDEQ_WQ_WQX-M12DRBNR01","Montana","Dearborn River at Hwy 287","River/Stream",47.198611,-112.093056
+"MDEQ_WQ_WQX-M12MISSR11","Montana","Missouri River at Pelican Point FAS","River/Stream",47.19972,-111.77513
+"MDEQ_WQ_WQX-M12MISSR07","Montana","Missouri River upstream of Big Bend FAS","River/Stream",47.40202,-111.34716
+"MDEQ_WQ_WQX-M12MISSR06","Montana","Missouri River at Millegan Rd crossing in Ulm","River/Stream",47.43039,-111.50091
+"MDEQ_WQ_WQX-M12MISSR12","Montana","Missouri River just upstream of Sun River confluence","River/Stream",47.49238,-111.3154
+"MDEQ_WQ_WQX-M13SUNR08","Montana","Sun River just above 6th Street Bridge","River/Stream",47.49132,-111.32985
+"MDEQ_WQ_WQX-M10SMTHR20","Montana","Smith River at Heaven on Earth Ranch","River/Stream",47.03213,-111.28632
+"MDEQ_WQ_WQX-BKK133","Montana","Smith River upstream Hound Creek confluence","River/Stream",47.2154,-111.3866
+"MDEQ_WQ_WQX-M10HONDC01","Montana","Hound Creek 1 mile upstream from mouth","River/Stream",47.213889,-111.409167
+"MDEQ_WQ_WQX-M10SHEPC12","Montana","Sheep Creek at the mouth","River/Stream",46.80419,-111.18297
+"MDEQ_WQ_WQX-M12MISSR42","Montana","Missouri River below Whitmore Ravine","River/Stream",47.53991,-111.18584
+"MTWTRSHD_WQX-SUN-MUDYC57","Montana","Muddy Creek at Vaughn","River/Stream",47.559444,-111.540278
+"MDEQ_WQ_WQX-M10WHTDC01","Montana","Whitetail Deer Creek near mouth","River/Stream",46.75166,-111.16624
+"MDEQ_WQ_WQX-M10BBCHC01","Montana","Big Birch Creek at mouth","River/Stream",46.58832,-111.05435
+"MDEQ_WQ_WQX-M10SMTHR92","Montana","Smith River d/s Newlan Creek confluence","River/Stream",46.59152,-111.05691
+"MDEQ_WQ_WQX-M10SMTHR04","Montana","Smith River 200 feet above Hwy 360 bridge","River/Stream",46.67625,-111.14793
+"MDEQ_WQ_WQX-M12DRBNR04","Montana","Dearborn River at HWY 287","River/Stream",47.19875,-112.095
+"CHIPCREE_WQX-BS5","Montana","below Wolf Creek","River/Stream",48.16355,-109.762316
+"CHIPCREE_WQX-BS6","Montana","Above Green Creek","River/Stream",48.165803,-109.773703
+"CHIPCREE_WQX-BS7","Montana","Below Green Creek","River/Stream",48.165882,-109.773798
+"CHIPCREE_WQX-GR1","Montana","Green Creek, before entering BS Creek","River/Stream",48.165803,-109.7738
+"CHIPCREE_WQX-WCBS1","Montana","Wolf Creek Before entering upper Big Sandy Creek","River/Stream",48.163212,-109.761791
+"CHIPCREE_WQX-BS1","Montana","Big Sandy Crk, near hd waters, on left side of road","River/Stream",48.167783,-109.707221
+"CHIPCREE_WQX-BS2","Montana","Above Ranger Creek","River/Stream",48.16226,-109.754016
+"CHIPCREE_WQX-BS3","Montana","Below Ranger Creek","River/Stream",48.162563,-109.755008
+"CHIPCREE_WQX-BS4","Montana","Above Wolf Creek","River/Stream",48.163393,-109.761133
+"CHIPCREE_WQX-JM2","Montana","Trib to Big Sandy, Water pipe","River/Stream",48.170791,-109.713226
+"CHIPCREE_WQX-RC1","Montana","Ranger Crk, Near bottom,before entering BS creek","River/Stream",48.162081,-109.754646
+"CHIPCREE_WQX-BS10","Montana","Reservation boundry","River/Stream",48.172202,-109.825966
+"CHIPCREE_WQX-BS8","Montana","Above Muddy Creek, near culvert","River/Stream",48.182851,-109.810891
+"CHIPCREE_WQX-BS9","Montana","Below Muddy Creek","River/Stream",48.183738,-109.814561
+"CHIPCREE_WQX-MC1","Montana","Muddy Creek 1","River/Stream",48.201683,-109.764517
+"CHIPCREE_WQX-MC2","Montana","Muddy CReek Site 2","River/Stream",48.195217,-109.783883
+"CHIPCREE_WQX-MC3","Montana","Below Muddy Creek Turnoff (2007 319 Site)","River/Stream",48.196383,-109.7991
+"CHIPCREE_WQX-GC1","Montana","Gorman Crk, Near cottonwoods","River/Stream",48.20386,-109.908838
+"MDEQ_WQ_WQX-M10SMTHR76","Montana","Smith River above Rock Springs Creek","River/Stream",46.63256,-111.09171
+"MDEQ_WQ_WQX-BKK129","Montana","Smith River 100 yards upstream of Fort Logan bridge","River/Stream",46.6758,-111.1444
+"MDEQ_WQ_WQX-M10SMTHR68","Montana","Smith River above Whitetail Deer Creek","River/Stream",46.75132,-111.16869
+"MDEQ_WQ_WQX-M10TNDFC02","Montana","Tenderfoot Creek at mouth","River/Stream",46.941748,-111.294364
+"MDEQ_WQ_WQX-M10SMTHR48","Montana","Smith River upstream Tenderfoot Creek confluence","River/Stream",46.94139,-111.29455
+"MDEQ_WQ_WQX-M12MISSR17","Montana","Missouri River at Big Bend FAS","River/Stream",47.38975,-111.3386
+"MDEQ_WQ_WQX-M14SPRC01","Montana","Spring Creek at Choteau Park","River/Stream",47.813056,-112.18
+"MDEQ_WQ_WQX-M13SUNR66","Montana","Sun River below Diversion Lake","River/Stream",47.61973,-112.69311
+"MDEQ_WQ_WQX-M10FORMC01","Montana","Fourmile Creek just past USFS and private land boundary","River/Stream",46.562,-110.7488
+"MDEQ_WQ_WQX-M12MISSR16","Montana","Missouri River at White Bear FAS","River/Stream",47.433842,-111.290344
+"MDEQ_WQ_WQX-M12MISSR25","Montana","Missouri River at Rivers Edge Trail, left side","River/Stream",47.5216,-111.27334
+"MDEQ_WQ_WQX-M12WHTMR01","Montana","Whitmore Ravine at footpath bridge above mouth","River/Stream",47.538893,-111.184943
+"MDEQ_WQ_WQX-M11BELTC03","Montana","Belt Creek u/s Salem Rd bridge 700 ft","River/Stream",47.582464,-111.030475
+"MDEQ_WQ_WQX-M10CMASC05","Montana","Camas Creek 1 mi u/s of mouth","River/Stream",46.692,-111.1884
+"CHIPCREE_WQX-UBS1","Montana","UBS1","River/Stream",48.16638889,-109.70666667
+"MDEQ_WQ_WQX-M12MISSR60","Montana","Missouri River at Fort Benton City Park","River/Stream",47.82005,-110.664
+"MDEQ_WQ_WQX-M18MARIR14","Montana","Marias River u/s Loma Hwy 87 bridge","River/Stream",47.9319,-110.50805
+"MDEQ_WQ_WQX-M13ELKC05","Montana","Elk Creek on the Scherrer property","River/Stream",47.511367,-112.336864
+"MDEQ_WQ_WQX-M13BGCUC60","Montana","Big Coulee d/s Hwy 408 bridge","River/Stream",47.579016,-112.068165
+"MDEQ_WQ_WQX-M12LNPNC01","Montana","Lone Pine Creek near mouth","River/Stream",47.2133,-112.4949
