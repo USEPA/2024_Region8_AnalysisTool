@@ -1172,7 +1172,7 @@ server <- function(input, output, session){
   observe({
     req(reVal$WQP_dat2, reVal$sample_size)
     output$Date_Info <- renderText({
-      req(reVal$WQP_dat, reVal$sample_size)
+      req(reVal$WQP_dat2, reVal$sample_size)
       if (reVal$sample_size == 0){
         paste0("Data are downloaded at ", reVal$download_date, ".\n",
                "There are ", reVal$sample_size, " records from ", reVal$site_number, " sites.\n") 
@@ -1280,6 +1280,7 @@ server <- function(input, output, session){
         }
         
         reVal$WQP_AutoClean <- temp_dat
+        reVal$WQP_dat <- NULL
         
         removeModal()
         
