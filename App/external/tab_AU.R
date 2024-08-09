@@ -3,6 +3,12 @@ function(){
   tabPanel("Join AUs",
            h2("Join Sites to the Assessment Units"),
            fluidRow(
+             box(width = 12, status = "warning", solidHeader = TRUE,
+                 title = "Notes",
+                 p("If the user intends to continue with the tool to evaluate sites on a monitoring location basis rather than AUs, they will still need to move through the steps in this tab. The tool will simply link any existing monitoring location-AU matches in the crosswalk and add the corresponding AU to the dataset; this joining does not eliminate any monitoring locations nor does it require that the AU information is used in any subsequent tab. Future iterations of the tool may allow the user to completely bypass this tab."),
+             )
+           ),
+           fluidRow(
              box(width = 6, status = "primary", solidHeader = TRUE,
                  title = "WQP Data Upload",
                  strong("Data Condition:"),

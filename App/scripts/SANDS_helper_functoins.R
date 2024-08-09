@@ -1385,8 +1385,9 @@ number_clean <- function(x) {
 
 ### A function to create the factsheet as a list
 ### Turn lines 81 to 291 a function
-fact_sheet_create <- function(sample_w_er3, list_sites, criteria_table, flow_dates, AU = TRUE){
-  
+fact_sheet_create <- function(sample_w_er3, list_sites, criteria_table, flow_dates, AU = TRUE,
+                              Convert = TRUE){
+  ### Fact sheet create function
   result_list <- list()
   
   for(i in list_sites) {
@@ -1394,14 +1395,14 @@ fact_sheet_create <- function(sample_w_er3, list_sites, criteria_table, flow_dat
     #Pull data for relevant AU and change text case
     if (AU){
       filter_sample_pull <- sample_w_er3 %>%
-        filter(AU_ID == i) %>%
-        #Convert all caps to title case
-        mutate(TADA.ResultSampleFractionText = ifelse(TADA.ResultSampleFractionText == 'TOTAL',
-                                                      'TOTAL RECOVERABLE',
-                                                      TADA.ResultSampleFractionText))
+        filter(AU_ID == i)
     } else {
       filter_sample_pull <- sample_w_er3 %>%
-        filter(MonitoringLocationIdentifier == i) %>%
+        filter(MonitoringLocationIdentifier == i) 
+    }
+    
+    if (Convert){
+      filter_sample_pull <- filter_sample_pull %>%
         #Convert all caps to title case
         mutate(TADA.ResultSampleFractionText = ifelse(TADA.ResultSampleFractionText == 'TOTAL',
                                                       'TOTAL RECOVERABLE',
@@ -1411,22 +1412,14 @@ fact_sheet_create <- function(sample_w_er3, list_sites, criteria_table, flow_dat
     #Identify the constituents and their fractions in this AU
     filter_constituents <- filter_sample_pull %>%
       select(TADA.CharacteristicName, TADA.ResultSampleFractionText) %>%
-      unique() 
+      unique()
     
     #Pull relevant standards
     filter_standards <- criteria_table %>%
       filter(Constituent %in% filter_constituents$TADA.CharacteristicName)
     
-    #Combine all identified constituents/fractions with their standards
-    combine_stands_const <- filter_constituents %>% 
-      right_join(filter_standards, by = c('TADA.CharacteristicName' = 'Constituent',
-                                          'TADA.ResultSampleFractionText' = 'Fraction')) 
-    
     #Combine all relevant samples with their standards for analysis
-    combine_samples_stands <- combine_stands_const %>%
-      inner_join(filter_sample_pull, by = c('TADA.CharacteristicName',
-                                           'TADA.ResultSampleFractionText'),
-                relationship = "many-to-many") %>%
+    combine_samples_stands <- filter_sample_pull %>%
       mutate(doy = lubridate::yday(ActivityStartDate)) %>%
       left_join(flow_dates, by = "US_L3NAME")
     
@@ -1451,7 +1444,7 @@ fact_sheet_create <- function(sample_w_er3, list_sites, criteria_table, flow_dat
                     'Lead','Selenium','Silver', 'Zinc','Mercury') %>%
       str_to_upper()
     
-    missing_params <- which(!parameters %in% filter_constituents$TADA.CharacteristicName)
+    missing_params <- which(!parameters %in% unique(combine_samples_stands$TADA.CharacteristicName))
     missing_params_names <- parameters[missing_params]
     
     if (AU){
@@ -1506,24 +1499,24 @@ fact_sheet_create <- function(sample_w_er3, list_sites, criteria_table, flow_dat
                   Sample_Years = paste0(min(year(ActivityStartDate)),
                                         ' - ',
                                         max(year(ActivityStartDate))),
-                  Number_Samples = n(),
+                  Number_Samples = n()/2,
                   #If location is Lake -> high flow = NA,
                   #If location is stream -> check dates for high flow
                   high_flow = ifelse(str_detect(MonitoringLocationTypeName, 'Lake') == F,
                                      ifelse(doy >= StartDate & doy < EndDate, 1, 0),
                                      NA),
-                  Num_High_Flow = sum(high_flow, na.rm = T),
+                  Num_High_Flow = sum(high_flow, na.rm = T)/2,
                   Percent_High_Flow = Num_High_Flow/Number_Samples*100,
                   acute_2x = ifelse(Details == 'Acute', 
-                                    ifelse(TADA.ResultMeasureValue >= (2*Magnitude_Upper), 1, 0),
+                                    ifelse(TADA.ResultMeasureValue >= (2*Criteria_Upper), 1, 0),
                                     NA),
                   Num_Samples_2x_Acute = sum(acute_2x, na.rm = T),
                   acute = ifelse(Details == 'Acute', 
-                                 ifelse(TADA.ResultMeasureValue >= Magnitude_Upper, 1, 0),
+                                 ifelse(TADA.ResultMeasureValue >= Criteria_Upper, 1, 0),
                                  NA),
                   Num_Acute_Exceedances = sum(acute, na.rm = T),
                   chronic = ifelse(Details == 'Chronic', 
-                                   ifelse(TADA.ResultMeasureValue >= Magnitude_Upper, 1, 0),
+                                   ifelse(TADA.ResultMeasureValue >= Criteria_Upper, 1, 0),
                                    NA),
                   Num_Chronic_Exceedances = sum(chronic, na.rm = T),
                   Acute_Exceedance_Rate = Num_Acute_Exceedances/Number_Samples*100,
@@ -1557,7 +1550,7 @@ fact_sheet_create <- function(sample_w_er3, list_sites, criteria_table, flow_dat
                                      NA),
                   Num_High_Flow = sum(high_flow, na.rm = T),
                   Percent_High_Flow = Num_High_Flow/Number_Samples*100,
-                  exceedances = ifelse(TADA.ResultMeasureValue >= Magnitude_Upper, 1, 0),
+                  exceedances = ifelse(TADA.ResultMeasureValue >= Criteria_Upper, 1, 0),
                   Num_HHS_Exceedances = sum(exceedances, na.rm = T)) %>%
           select(!c(high_flow, exceedances)) %>%
           unique()

@@ -2308,9 +2308,6 @@ server <- function(input, output, session){
     data_storage$SU_time <- NULL
     data_storage$SU_latest_data <- NULL
     
-    data_storage$SANDS_latest_upload <- NULL
-    data_storage$SANDS_time <- NULL
-    data_storage$SANDS_latest_data <- NULL
   }) %>%
     bindEvent(input$Reset3)
 
@@ -2359,15 +2356,9 @@ server <- function(input, output, session){
     reset("box_group")
   })
   
-  observe({
-    data_storage$SANDS_latest_upload <- NULL
-    data_storage$SANDS_time <- NULL
-    data_storage$SANDS_latest_data <- NULL
-  }) %>%
-    bindEvent(input$Reset5)
-  
   observeEvent(input$Reset5,{
     reset("Site_AU_fact_SANDS")
+    reset("total_convert")
   })
   
   ### The Analysis tab
@@ -3542,7 +3533,8 @@ server <- function(input, output, session){
   # Prepare the final output for the AN tab
   AN_final_dat <- reactive({
     req(AN_Val$ex)
-    temp_dat <- AN_Val$ex
+    temp_dat <- AN_Val$ex %>%
+      column_name_change4()
     return(temp_dat)
   })
   
@@ -4108,13 +4100,6 @@ server <- function(input, output, session){
               data_storage$SU_time <- reVal$WQP_time
               data_storage$SU_latest_data <- AU_Val$WQP_dat2
             }
-            
-            if (validate_fun(AU_Val$WQP_dat2 , SU_cols)){
-              data_storage$SANDS_latest_upload <- "Data processed from the Join AU tab"
-              data_storage$SANDS_time <- reVal$WQP_time
-              data_storage$SANDS_latest_data <- AU_Val$WQP_dat2
-            }
-            
           })
           
         })
@@ -5296,16 +5281,17 @@ server <- function(input, output, session){
   
   # Check if there are any needed data for factsheet creation
   observe({
-    req(data_storage$SANDS_latest_data, nrow(data_storage$SANDS_latest_data) > 0)
-    SANDS_Val$WQP_dat_fact <- data_storage$SANDS_latest_data %>%
-      fsubset(TADA.CharacteristicName %in% factsheet_par)
+    req(AN_final_dat(), nrow(AN_final_dat()) > 0)
+    SANDS_Val$WQP_dat_fact <- AN_final_dat() %>%
+      fsubset(TADA.CharacteristicName %in% factsheet_par &
+                TADA.ResultMeasure.MeasureUnitCode %in% "UG/L")
     if (nrow(SANDS_Val$WQP_dat_fact) > 0){
       SANDS_Val$fact_sheet_create <- TRUE
     } 
   })
   
   output$factsheet_info <- renderText({
-    req(data_storage$SANDS_latest_data, nrow(data_storage$SANDS_latest_data) > 0)
+    req(AN_final_dat(), nrow(AN_final_dat()) > 0)
     if (SANDS_Val$fact_sheet_create){
       "Data are available to summarize and generate the fact sheets"
     } else {
@@ -5364,7 +5350,8 @@ server <- function(input, output, session){
           list_sites = list_sites,
           criteria_table = criteria_table2,
           flow_dates = flow_dates,
-          AU = FALSE
+          AU = FALSE,
+          Convert = input$total_convert
         )
       } else if (input$Site_AU_fact_SANDS %in% "AU"){
         temp_result <- fact_sheet_create(
@@ -5372,7 +5359,8 @@ server <- function(input, output, session){
           list_sites = list_sites,
           criteria_table = criteria_table2,
           flow_dates = flow_dates,
-          AU = TRUE
+          AU = TRUE,
+          Convert = input$total_convert
         )
       }
     
@@ -5389,7 +5377,7 @@ server <- function(input, output, session){
   })
   
   output$factsheet_info2 <- renderText({
-    req(data_storage$SANDS_latest_data, nrow(data_storage$SANDS_latest_data) > 0)
+    req(AN_final_dat(), nrow(AN_final_dat()) > 0)
     if (SANDS_Val$fact_sheet_save){
       "Fact sheets are ready to save."
     } else {

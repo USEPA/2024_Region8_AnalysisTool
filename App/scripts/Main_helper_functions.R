@@ -361,6 +361,18 @@ column_name_change3 <- function(x){
   return(x2)
 }
 
+column_name_change4 <- function(x){
+  x2 <- x %>%
+    rename(TADA.CharacteristicName = Standard_Name, 
+           Updated_Fraction = Standard_Fraction,
+           TADA.ResultMeasure.MeasureUnitCode = Standard_Unit) %>%
+    rename(TADA.LongitudeMeasure = LongitudeMeasure,
+           TADA.LatitudeMeasure = LatitudeMeasure) %>%
+    rename(LongitudeMeasure = Original.LongitudeMeasure, 
+           LatitudeMeasure = Original.LatitudeMeasure)
+  return(x2)
+}
+
 # Helper functions to get the pH data
 pH_filter <- function(x){
   x2 <- x %>%
