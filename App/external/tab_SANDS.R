@@ -7,7 +7,7 @@ function(){
     fluidRow(
       box(width = 12, status = "warning", solidHeader = TRUE,
           title = "Notes",
-          p("The fact sheet creation function focuses on the metal parameters in Montans.")
+          p("The fact sheet creation function focuses on the metal parameters in Montana. Users can decide whether to convert the fraction 'Total' to 'Total Recoverable' to increase the sample size based on sites or assessment units..")
       )
     ),
     fluidRow(
@@ -17,12 +17,11 @@ function(){
           title = "Fact Sheet",
           status = "primary", solidHeader = TRUE,
           width = 12, collapsible = TRUE,
-          p("The fact sheet creation function focuses on the metal parameters."),
           strong("Create the factsheets"),
           verbatimTextOutput(outputId = "factsheet_info"),
           radioButtons(inputId = "Site_AU_fact_SANDS", label = "Summarize the data by site or AU",
                        choices = c("Site", "AU")),
-          strong("convert the fraction 'Total' to 'Total Recoverable:'"),
+          strong("Convert the fraction 'Total' to 'Total Recoverable':"),
           switchInput(inputId = "total_convert"),
           p(),
           actionButton(inputId = "create_factsheets", "Create"),

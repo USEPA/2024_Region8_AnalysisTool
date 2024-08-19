@@ -1873,9 +1873,13 @@ server <- function(input, output, session){
         # Create Result data
         reVal$result_temp <- SANDS_temp() %>% TADA_result(ref_col = names(result_template))
         
+        resultPhysChem_col <- c(names(resultPhysChem_template),
+                                "ResultMeasureValue_Ori",
+                                "DetectionQuantitationLimitMeasure.MeasureValue_Ori")
+        
         # Create ResultPhysChem data
         reVal$resultphyschem_temp <- SANDS_temp() %>% 
-          TADA_resultPhysChem(ref_col = names(resultPhysChem_template))
+          TADA_resultPhysChem(ref_col = resultPhysChem_col)
       })
       
       observe({

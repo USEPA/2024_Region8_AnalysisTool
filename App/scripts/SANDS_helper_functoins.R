@@ -133,10 +133,13 @@ SANDS_clean_result <- function(x, ref){
 TADA_resultPhysChem <- function(x, ref_col, update = TRUE){
   if (update){
     x2 <- x %>%
+      frename(ResultMeasureValue_Ori = 
+                ResultMeasureValue,
+              DetectionQuantitationLimitMeasure.MeasureValue_Ori = 
+                DetectionQuantitationLimitMeasure.MeasureValue) %>%
       fselect(-LatitudeMeasure, -LongitudeMeasure,
               -CharacteristicName, -ResultSampleFractionText,
-              -ResultMeasureValue, -ResultMeasure.MeasureUnitCode,
-              -DetectionQuantitationLimitMeasure.MeasureValue,
+              -ResultMeasure.MeasureUnitCode,
               -DetectionQuantitationLimitMeasure.MeasureUnitCode) %>%
       frename(LatitudeMeasure = TADA.LatitudeMeasure,
               LongitudeMeasure = TADA.LongitudeMeasure,
@@ -184,7 +187,7 @@ SANDS_create_summary_part1 <- function(sites, results, resultphyschem, ref, stat
     resultphyschem2 <- resultphyschem %>%
       # Create a within group ID for merging
       # Some rows differs only in ResultIdentifier and AnalysisStartDateTime
-      # But ResultIdentifier and AnalysisStartDateTime is not in resuls
+      # But ResultIdentifier and AnalysisStartDateTime is not in result
       ftransform(
         ID = rowid(
           OrganizationIdentifier,
@@ -221,7 +224,9 @@ SANDS_create_summary_part1 <- function(sites, results, resultphyschem, ref, stat
         "ResultDetectionConditionText",
         "MethodSpeciationName",
         "SubjectTaxonomicName",
-        "ID"
+        "ID",
+        "ResultMeasureValue_Ori",
+        "DetectionQuantitationLimitMeasure.MeasureValue_Ori"
       )
     # Select the columns in results
     results2 <- results %>%
@@ -329,7 +334,8 @@ SANDS_create_summary_part1 <- function(sites, results, resultphyschem, ref, stat
                    }
           )) %>%
       # Reorder the columns
-      get_vars(c(names(ref), "ResultCommentText")) %>%
+      get_vars(c(names(ref), "ResultCommentText", "ResultMeasureValue_Ori",
+                 "DetectionQuantitationLimitMeasure.MeasureValue_Ori")) %>%
       # Arrange the columns
       roworderv(c("SITE ID", "ACTIVITY DATE", "ACTIVITY ID"))
   } else {
@@ -341,7 +347,9 @@ SANDS_create_summary_part1 <- function(sites, results, resultphyschem, ref, stat
 
 SANDS_create_summary_part2 <- function(x, ref){
   if (nrow(x) > 0){
-    x2 <- x %>% fselect(-ResultCommentText)
+    x2 <- x %>% fselect(-ResultCommentText, 
+                        -ResultMeasureValue_Ori,
+                        -DetectionQuantitationLimitMeasure.MeasureValue_Ori)
   } else {
     x2 <- ref
   }
@@ -1308,8 +1316,8 @@ convert_time <- function(x){
 SANDS_unit <- function(x){
   x2 <- x %>%
     # Create a column to documnet the numeric value
-    fmutate(Num_Value = as.numeric(`RESULT VALUE`)) %>%
-    fmutate(Num_Det_Value = as.numeric(`DETECTION LIMIT VALUE`)) %>%
+    fmutate(Num_Value = as.numeric(ResultMeasureValue_Ori)) %>%
+    fmutate(Num_Det_Value = as.numeric(`DetectionQuantitationLimitMeasure.MeasureValue_Ori`)) %>%
     # Unit conversion
     fmutate(Value = case_when(
       # If below detection limit: Num_Value = NA & Num_Det_Value not NA
