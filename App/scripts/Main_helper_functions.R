@@ -727,7 +727,6 @@ su_group <- function(x, ...){
   x2 <- x %>%
     group_by(...) %>%
     summarize(Year_n = n_distinct(Year),
-              Year_R = n_distinct(RYear),
               Sample_n = n()) %>%
     ungroup()
   return(x2)
@@ -784,8 +783,6 @@ Assess_su <- function(dat){
   dat2 <- dat %>%
     fmutate(Year_Flag = case_when(
         is.na(Minimum_Assessment_Period_Years)                                   ~ "Not Required",
-        Other_Requirements %in% "Primary Recreation season (April 1 - March 31)" & 
-        Year_R >= Minimum_Assessment_Period_Years                                ~ "Yes",
         Year_n >= Minimum_Assessment_Period_Years                                ~ "Yes",
         TRUE                                                                     ~ "No"
     )) %>%
@@ -830,12 +827,8 @@ Assess_su <- function(dat){
       Temp_Notes %in% 1 & Temp_Sample_n < Minimum_Data_Points                    ~ "No",
       TRUE                                                                       ~ NA_character_
     )) %>%
-    fmutate(Overwhelming_Flag = case_when(
-      !Overwhelming_Evidence %in% 1                                              ~ "Not Required",
-      Overwhelming_Evidence %in% 1 & Exceedance_Sum > 0                          ~ "Yes",
-      Overwhelming_Evidence %in% 1 & Exceedance_Sum == 0                         ~ "No",
-      TRUE                                                                       ~ NA_character_
-    )) %>%
+    fmutate(Overwhelming_Evidence = ifelse(is.na( Overwhelming_Evidence), 0,  Overwhelming_Evidence)) %>%
+    fmutate(Overwhelming_Flag = ifelse(is.na(Overwhelming_Flag), "Not Required",  Overwhelming_Flag)) %>%
     # Final flag
     fmutate(Sufficiency = case_when(
       Sufficiency_Q %in% "No"                                                    ~ "Not Required", 

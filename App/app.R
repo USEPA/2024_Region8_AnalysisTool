@@ -26,7 +26,7 @@ library(spsComps)
 library(scales)
 
 # Load the data
-load("DataInput/InputData34.RData")
+load("DataInput/InputData35.RData")
 load("DataInput/SANDS_input24.RData")
 
 # Load the tabs
@@ -2492,12 +2492,14 @@ server <- function(input, output, session){
       column_name_change3()
       
     # Filter the data based on SU_filter
-    if (input$SU_filter %in% "Report site with sufficient data"){
+    if (input$SU_filter %in% "Report site with any sufficient data"){
       dat <- dat %>%
-        fsubset(str_detect(Site_Sufficiency_Notes, fixed("Sufficient")))
-    } else if (input$SU_filter %in% "Report AU with sufficient data"){
+        fsubset(str_detect(Site_Sufficiency_Notes, fixed("Sufficient")) | 
+                  Site_Sufficiency_Notes %in% "Not Required")
+    } else if (input$SU_filter %in% "Report AU with any sufficient data"){
       dat <- dat %>%
-        fsubset(str_detect(AU_Sufficiency_Notes, fixed("Sufficient")))
+        fsubset(str_detect(AU_Sufficiency_Notes, fixed("Sufficient")) |
+                  AU_Sufficiency_Notes %in% "Not Required")
     } else {
       dat <- dat
     }
@@ -4281,7 +4283,6 @@ server <- function(input, output, session){
                Standard_Fraction, # This is the place to combined standard
                Standard_Unit,
                Use, Details_Criteria,
-               Overwhelming_Evidence, 
                Minimum_Assessment_Period_Years, 
                Minimum_Data_Points,
                Other_Requirements,
@@ -4302,7 +4303,6 @@ server <- function(input, output, session){
                Standard_Fraction, # This is the place to combined standard
                Standard_Unit,
                Use, Details_Criteria,
-               Overwhelming_Evidence, 
                Minimum_Assessment_Period_Years, 
                Minimum_Data_Points,
                Other_Requirements,
@@ -4317,22 +4317,21 @@ server <- function(input, output, session){
   ### Overwhelming evidence on the site level
   Site_over_su <- reactive({
     req(SU_Val$WQP_dat2, nrow(SU_Val$WQP_dat2) > 0)
-    dat <- SU_Val$WQP_dat2 %>% mutate(ID = 1:n())
     
-    # Find data with acute metal condition and the criteria are based on hardness
-    group312 <- dat %>% 
-      fsubset(pH_Notes %in% 3 & Hardness_Notes %in% 1 & Temp_Notes %in% 2)
+    ### Overwhelming evidence 
     
-    # Find the ammonia data
-    group432 <- dat %>% 
-      fsubset(pH_Notes %in% 4 & Hardness_Notes %in% 3 & Temp_Notes %in% 2)
+    # Metals 
+    dat3_over_metals <- SU_Val$WQP_dat2 %>%
+      filter(Standard_Name %in% over_acute_metals) %>%
+      filter(Details_Criteria %in% "Acute", 
+             StateName %in% "Montana",
+             Standard_Unit %in% "UG/L") %>%
+      mutate(ID = 1:n()) %>%
+      mutate(Overwhelming_Evidence = 1)
     
-    dat_no <- dat %>%
-      anti_join(group312, by = "ID")
+    group312 <- dat3_over_metals %>% 
+      fsubset(pH_Notes %in% 3 & Hardness_Notes %in% 1 & Temp_Notes %in% 2) 
     
-    rm(dat)
-    
-    # Calculate the acute magnitude
     group312_2 <- group312 %>%
       left_join(Equation_table %>% fselect(-Fraction), 
                 by = c("StateName" = "State", 
@@ -4350,49 +4349,117 @@ server <- function(input, output, session){
       fmutate(Magnitude_Upper = Criteria_Upper) %>%
       fselect(-Criteria_Upper)
     
-    group432_2 <- group432 %>%
-      fmutate(Criteria_Upper = case_when(
-        Details_Criteria %in% "Acute, salmonids present"              ~CMC_criteria_fun(pH, salmonid = TRUE),
-        Details_Criteria %in% "Acute, salmonids absent"               ~CMC_criteria_fun(pH, salmonid = FALSE),
-        # Details %in% "Chronic, early life stages present"    ~CCC_criteria_fun(pH, Temperature, earlylife = TRUE),
-        # Details %in% "Chronic, early life stages absent"     ~CCC_criteria_fun(pH, Temperature, earlylife = FALSE),
-        TRUE                                                 ~NA_real_
-      )) %>%
-      fmutate(Magnitude_Upper = Criteria_Upper) %>%
-      fselect(-Criteria_Upper)
+    group132 <- dat3_over_metals %>% 
+      fsubset(pH_Notes %in% 1 & Hardness_Notes %in% 3 & Temp_Notes %in% 2) 
     
-    dat2 <- rbindlist(list(dat_no, group312_2, group432_2), fill = TRUE) %>%
-      arrange(ID) %>%
-      # Count the samples
-      over_count(StateName, Standard_Name, 
-                 AU_ID, AU_NAME, 
-                 MonitoringLocationIdentifier,
-                 LatitudeMeasure, LongitudeMeasure,
-                 Standard_Fraction, # This is the place to combined standard
-                 Standard_Unit,
-                 Use, Details_Criteria)
-    return(dat2)
+    group132_2 <- group132 %>%
+      fmutate(Magnitude_Upper = ifelse(pH >= 6.5 & pH <= 9, Magnitude_Upper, NA_real_)) 
+    
+    dat3_over_metals_c <- dat3_over_metals %>%
+      anti_join(group132, by = "ID") %>%
+      anti_join(group312, by = "ID")
+    
+    dat3_over_metals2 <- bind_rows(dat3_over_metals_c, group312_2, group132_2)
+    
+    dat3_over_metals3 <- dat3_over_metals2 %>%
+      mutate(Exceedance = TADA.ResultMeasureValue > 2 * Magnitude_Upper) %>%
+      group_by(StateName, Standard_Name, AU_ID, AU_NAME, 
+               MonitoringLocationIdentifier,
+               LatitudeMeasure, LongitudeMeasure,
+               Standard_Fraction, # This is the place to combined standard
+               Standard_Unit,
+               Use, Details_Criteria,
+               Minimum_Assessment_Period_Years, 
+               Minimum_Data_Points,
+               Other_Requirements,
+               Sufficiency_Q,
+               Overwhelming_Evidence) %>%
+      summarize(Exceedance_Sum = sum(Exceedance, na.rm = TRUE)) %>%
+      ungroup() %>%
+      mutate(Overwhelming_Flag = ifelse(Exceedance_Sum > 0, "Yes", "No")) %>%
+      dplyr::select(-Exceedance_Sum)
+    
+    # E. coli and Ammonia
+    dat3_over_others <- SU_Val$WQP_dat2 %>%
+      filter(Standard_Name %in% c("ESCHERICHIA COLI", "AMMONIA")) %>%
+      # Change the criteria
+      left_join(data_over2 %>% 
+                  dplyr::select(-StateAbbrev, -Details) %>%
+                  rename(Minimum_Assessment_Period_Years_Over = Minimum_Assessment_Period_Years,
+                         Minimum_Data_Points_Over = Minimum_Data_Points,
+                         Other_Requirements_Over = Other_Requirements), 
+                by = c("StateName" = "State",
+                       "Waterbody_Type", "Constituent_Group", "Constituent",
+                       "Standard_Name" = "TADA.Constituent",
+                       "Standard_Unit" = "MagUnits",
+                       "Fraction_Criteria" = "Fraction",
+                       "Use",
+                       # "Details_Criteria" = "Details",
+                       "Listing_methodology")) %>%
+      dplyr::select(-Minimum_Assessment_Period_Years, -Minimum_Data_Points, 
+                    -Other_Requirements) %>%
+      rename(Minimum_Assessment_Period_Years = Minimum_Assessment_Period_Years_Over,
+             Minimum_Data_Points = Minimum_Data_Points_Over,
+             Other_Requirements = Other_Requirements_Over)
+    
+    ### Count sample size and years
+    
+    dat3_over_others2 <- dat3_over_others %>%
+      su_group(StateName, Standard_Name, AU_ID, AU_NAME, 
+               MonitoringLocationIdentifier,
+               LatitudeMeasure, LongitudeMeasure,
+               Standard_Fraction, # This is the place to combined standard
+               Standard_Unit,
+               Use, Details_Criteria,
+               Minimum_Assessment_Period_Years, 
+               Minimum_Data_Points,
+               Other_Requirements,
+               Sufficiency_Q,
+               Overwhelming_Evidence) %>%
+      fmutate(Year_Over_Flag = case_when(
+        is.na(Minimum_Assessment_Period_Years)                                   ~ "Not Required",
+        Year_n >= Minimum_Assessment_Period_Years                                ~ "Yes",
+        TRUE                                                                     ~ "No"
+      )) %>%
+      fmutate(Sample_Over_Flag = case_when(
+        is.na(Minimum_Data_Points)                                                 ~ "Not Required",
+        Sample_n >= Minimum_Data_Points                                            ~ "Yes",
+        TRUE                                                                       ~ "No"
+      )) %>%
+      mutate(Overwhelming_Flag = case_when(
+        Year_Over_Flag %in% "Yes" & Sample_Over_Flag %in% "Yes"                    ~ "Yes",
+        Year_Over_Flag %in% "No" & Sample_Over_Flag %in% "Yes"                     ~ "No",
+        Year_Over_Flag %in% "Yes" & Sample_Over_Flag %in% "No"                     ~ "No",
+        Year_Over_Flag %in% "No" & Sample_Over_Flag %in% "No"                      ~ "No",
+        TRUE                                                                       ~ "Not Required"
+      )) %>%
+      dplyr::select(-Year_Over_Flag, -Sample_Over_Flag, -Year_n, -Sample_n)
+    
+    over_dat_summary <- bind_rows(dat3_over_metals3, dat3_over_others2) %>%
+      dplyr::select(-Minimum_Assessment_Period_Years, -Minimum_Data_Points, 
+                    -Other_Requirements, -Sufficiency_Q)
+    
+    return(over_dat_summary)
   })
 
   ### Overwhelming evidence on the AU level
   AU_over_su <- reactive({
     req(SU_Val$WQP_dat2, nrow(SU_Val$WQP_dat2) > 0)
-    dat <- SU_Val$WQP_dat2 %>% mutate(ID = 1:n())
     
-    # Find data with acute metal condition and the criteria are based on hardness
-    group312 <- dat %>% 
-      fsubset(pH_Notes %in% 3 & Hardness_Notes %in% 1 & Temp_Notes %in% 2)
+    ### Overwhelming evidence 
     
-    # Find the ammonia data
-    group432 <- dat %>% 
-      fsubset(pH_Notes %in% 4 & Hardness_Notes %in% 3 & Temp_Notes %in% 2)
+    # Metals 
+    dat3_over_metals <- SU_Val$WQP_dat2 %>%
+      filter(Standard_Name %in% over_acute_metals) %>%
+      filter(Details_Criteria %in% "Acute", 
+             StateName %in% "Montana",
+             Standard_Unit %in% "UG/L") %>%
+      mutate(ID = 1:n()) %>%
+      mutate(Overwhelming_Evidence = 1)
     
-    dat_no <- dat %>%
-      anti_join(group312, by = "ID")
+    group312 <- dat3_over_metals %>% 
+      fsubset(pH_Notes %in% 3 & Hardness_Notes %in% 1 & Temp_Notes %in% 2) 
     
-    rm(dat)
-    
-    # Calculate the acute magnitude
     group312_2 <- group312 %>%
       left_join(Equation_table %>% fselect(-Fraction), 
                 by = c("StateName" = "State", 
@@ -4410,24 +4477,94 @@ server <- function(input, output, session){
       fmutate(Magnitude_Upper = Criteria_Upper) %>%
       fselect(-Criteria_Upper)
     
-    group432_2 <- group432 %>%
-      fmutate(Criteria_Upper = case_when(
-        Details_Criteria %in% "Acute, salmonids present"              ~CMC_criteria_fun(pH, salmonid = TRUE),
-        Details_Criteria %in% "Acute, salmonids absent"               ~CMC_criteria_fun(pH, salmonid = FALSE),
-        # Details %in% "Chronic, early life stages present"    ~CCC_criteria_fun(pH, Temperature, earlylife = TRUE),
-        # Details %in% "Chronic, early life stages absent"     ~CCC_criteria_fun(pH, Temperature, earlylife = FALSE),
-        TRUE                                                 ~NA_real_
-      )) %>%
-      fmutate(Magnitude_Upper = Criteria_Upper) %>%
-      fselect(-Criteria_Upper)
+    group132 <- dat3_over_metals %>% 
+      fsubset(pH_Notes %in% 1 & Hardness_Notes %in% 3 & Temp_Notes %in% 2) 
     
-    dat2 <- rbindlist(list(dat_no, group312_2, group432_2), fill = TRUE) %>%
-      arrange(ID) %>%
-      over_count(StateName, Standard_Name, AU_ID, AU_NAME,
-                 Standard_Fraction, # This is the place to combined standard
-                 Standard_Unit,
-                 Use, Details_Criteria)
-    return(dat2)
+    group132_2 <- group132 %>%
+      fmutate(Magnitude_Upper = ifelse(pH >= 6.5 & pH <= 9, Magnitude_Upper, NA_real_)) 
+    
+    dat3_over_metals_c <- dat3_over_metals %>%
+      anti_join(group132, by = "ID") %>%
+      anti_join(group312, by = "ID")
+    
+    dat3_over_metals2 <- bind_rows(dat3_over_metals_c, group312_2, group132_2)
+    
+    dat3_over_metals3 <- dat3_over_metals2 %>%
+      mutate(Exceedance = TADA.ResultMeasureValue > 2 * Magnitude_Upper) %>%
+      group_by(StateName, Standard_Name, AU_ID, AU_NAME, 
+               Standard_Fraction, # This is the place to combined standard
+               Standard_Unit,
+               Use, Details_Criteria,
+               Minimum_Assessment_Period_Years, 
+               Minimum_Data_Points,
+               Other_Requirements,
+               Sufficiency_Q,
+               Overwhelming_Evidence) %>%
+      summarize(Exceedance_Sum = sum(Exceedance, na.rm = TRUE)) %>%
+      ungroup() %>%
+      mutate(Overwhelming_Flag = ifelse(Exceedance_Sum > 0, "Yes", "No")) %>%
+      dplyr::select(-Exceedance_Sum)
+    
+    # E. coli and Ammonia
+    dat3_over_others <- SU_Val$WQP_dat2 %>%
+      filter(Standard_Name %in% c("ESCHERICHIA COLI", "AMMONIA")) %>%
+      # Change the criteria
+      left_join(data_over2 %>% 
+                  dplyr::select(-StateAbbrev, -Details) %>%
+                  rename(Minimum_Assessment_Period_Years_Over = Minimum_Assessment_Period_Years,
+                         Minimum_Data_Points_Over = Minimum_Data_Points,
+                         Other_Requirements_Over = Other_Requirements), 
+                by = c("StateName" = "State",
+                       "Waterbody_Type", "Constituent_Group", "Constituent",
+                       "Standard_Name" = "TADA.Constituent",
+                       "Standard_Unit" = "MagUnits",
+                       "Fraction_Criteria" = "Fraction",
+                       "Use",
+                       # "Details_Criteria" = "Details",
+                       "Listing_methodology")) %>%
+      dplyr::select(-Minimum_Assessment_Period_Years, -Minimum_Data_Points, 
+                    -Other_Requirements) %>%
+      rename(Minimum_Assessment_Period_Years = Minimum_Assessment_Period_Years_Over,
+             Minimum_Data_Points = Minimum_Data_Points_Over,
+             Other_Requirements = Other_Requirements_Over)
+    
+    ### Count sample size and years
+    
+    dat3_over_others2 <- dat3_over_others %>%
+      su_group(StateName, Standard_Name, AU_ID, AU_NAME, 
+               Standard_Fraction, # This is the place to combined standard
+               Standard_Unit,
+               Use, Details_Criteria,
+               Minimum_Assessment_Period_Years, 
+               Minimum_Data_Points,
+               Other_Requirements,
+               Sufficiency_Q,
+               Overwhelming_Evidence) %>%
+      fmutate(Year_Over_Flag = case_when(
+        is.na(Minimum_Assessment_Period_Years)                                   ~ "Not Required",
+        Year_n >= Minimum_Assessment_Period_Years                                ~ "Yes",
+        TRUE                                                                     ~ "No"
+      )) %>%
+      fmutate(Sample_Over_Flag = case_when(
+        is.na(Minimum_Data_Points)                                                 ~ "Not Required",
+        Sample_n >= Minimum_Data_Points                                            ~ "Yes",
+        TRUE                                                                       ~ "No"
+      )) %>%
+      mutate(Overwhelming_Flag = case_when(
+        Year_Over_Flag %in% "Yes" & Sample_Over_Flag %in% "Yes"                    ~ "Yes",
+        Year_Over_Flag %in% "No" & Sample_Over_Flag %in% "Yes"                     ~ "No",
+        Year_Over_Flag %in% "Yes" & Sample_Over_Flag %in% "No"                     ~ "No",
+        Year_Over_Flag %in% "No" & Sample_Over_Flag %in% "No"                      ~ "No",
+        TRUE                                                                       ~ "Not Required"
+      )) %>%
+      dplyr::select(-Year_Over_Flag, -Sample_Over_Flag, -Year_n, -Sample_n)
+    
+    over_dat_summary <- bind_rows(dat3_over_metals3, dat3_over_others2) %>%
+      dplyr::select(-Minimum_Assessment_Period_Years, -Minimum_Data_Points, 
+                    -Other_Requirements, -Sufficiency_Q)
+    
+    return(over_dat_summary)
+    
   })
   
   ### Evaluatate hardness, pH, and temperature on the site level
@@ -4775,9 +4912,9 @@ server <- function(input, output, session){
         Details %in% unique(selected_par_SU()$Details) &
         Use %in% unique(selected_par_SU()$Use)
       ) %>%
-      dplyr::select(-Year_n:-Exceedance_Sum) %>%
+      relocate(Overwhelming_Flag, .before = "Hardness_Notes") %>%
       dplyr::select(-Hardness_Notes:-pH_Notes, -Sufficiency_Q:-Temp_Sample_Flag)
-      
+    
     return(WQP_site)
   })
   
