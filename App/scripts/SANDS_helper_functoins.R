@@ -1424,7 +1424,8 @@ fact_sheet_create <- function(sample_w_er3, list_sites, criteria_table, flow_dat
     
     #Pull relevant standards
     filter_standards <- criteria_table %>%
-      filter(Constituent %in% filter_constituents$TADA.CharacteristicName)
+      filter(Constituent %in% filter_constituents$TADA.CharacteristicName) %>%
+      filter(State %in% "Montana")
     
     #Combine all relevant samples with their standards for analysis
     combine_samples_stands <- filter_sample_pull %>%
@@ -1493,10 +1494,14 @@ fact_sheet_create <- function(sample_w_er3, list_sites, criteria_table, flow_dat
         if (AU){
           summary_table_temp <- combine_samples_stands %>%
             filter(Use %in% j) %>%
+            semi_join(filter_standards, by = c("TADA.CharacteristicName" = "Constituent",
+                                               "TADA.ResultSampleFractionText" = "Fraction")) %>%
             group_by(TADA.CharacteristicName, AU_ID, AU_NAME)
         } else {
           summary_table_temp <- combine_samples_stands %>%
             filter(Use %in% j) %>%
+            semi_join(filter_standards, by = c("TADA.CharacteristicName" = "Constituent",
+                                               "TADA.ResultSampleFractionText" = "Fraction")) %>%
             group_by(TADA.CharacteristicName, 
                      MonitoringLocationIdentifier, 
                      MonitoringLocationName)
@@ -1507,13 +1512,17 @@ fact_sheet_create <- function(sample_w_er3, list_sites, criteria_table, flow_dat
                   Sample_Years = paste0(min(year(ActivityStartDate)),
                                         ' - ',
                                         max(year(ActivityStartDate))),
-                  Number_Samples = n()/2,
+                  Number_Samples = ifelse(all(c("Acute", "Chronic") %in% unique(Details)),
+                                          n()/2,
+                                          n()),
                   #If location is Lake -> high flow = NA,
                   #If location is stream -> check dates for high flow
                   high_flow = ifelse(str_detect(MonitoringLocationTypeName, 'Lake') == F,
                                      ifelse(doy >= StartDate & doy < EndDate, 1, 0),
                                      NA),
-                  Num_High_Flow = sum(high_flow, na.rm = T)/2,
+                  Num_High_Flow = ifelse(all(c("Acute", "Chronic") %in% unique(Details)),
+                                         sum(high_flow, na.rm = T)/2, 
+                                         sum(high_flow, na.rm = T)),
                   Percent_High_Flow = Num_High_Flow/Number_Samples*100,
                   acute_2x = ifelse(Details == 'Acute', 
                                     ifelse(TADA.ResultMeasureValue >= (2*Criteria_Upper), 1, 0),
@@ -1535,10 +1544,14 @@ fact_sheet_create <- function(sample_w_er3, list_sites, criteria_table, flow_dat
         if (AU){
           summary_table_temp <- combine_samples_stands %>%
             filter(Use %in% j) %>%
+            semi_join(filter_standards, by = c("TADA.CharacteristicName" = "Constituent",
+                                               "TADA.ResultSampleFractionText" = "Fraction")) %>%
             group_by(TADA.CharacteristicName, AU_ID, AU_NAME)
         } else {
           summary_table_temp <- combine_samples_stands %>%
             filter(Use %in% j) %>%
+            semi_join(filter_standards, by = c("TADA.CharacteristicName" = "Constituent",
+                                               "TADA.ResultSampleFractionText" = "Fraction")) %>%
             group_by(TADA.CharacteristicName, 
                      MonitoringLocationIdentifier, 
                      MonitoringLocationName)

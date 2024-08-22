@@ -1,71 +1,90 @@
 "MonitoringLocationIdentifier","State","MonitoringLocationName","MonitoringLocationTypeName","LatitudeMeasure","LongitudeMeasure"
-"USGS-12340000","Montana",NA,"Stream",46.8994111,-113.7563194
-"USGS-06076590","Montana",NA,"Stream",46.6784861,-111.1939194
-"USGS-463504111154601","Montana",NA,"Stream",46.58434167,-111.2626806
-"USGS-464753110542301","Montana",NA,"Stream",46.79805556,-110.9063889
-"MDEQ_WQ_WQX-M09PRPEC01","Montana","Prickly Pear Creek near Clancy","River/Stream",46.516111,-111.947778
-"MDEQ_WQ_WQX-M09MISSR07","Montana","Missouri River below Canyon Ferry Dam","River/Stream",46.6545,-111.7358
-"MDEQ_WQ_WQX-M09DEEPC70","Montana","Deep Creek 1.2 mi u/s of Deep Creek picnic area","River/Stream",46.33465,-111.17144
-"MDEQ_WQ_WQX-M10SHEPC06","Montana","Sheep Creek about 1 mile upstream of Moose Creek","River/Stream",46.79281,-110.91112
-"MDEQ_WQ_WQX-M10MOOSC07","Montana","Moose Creek at Moose Creek Campground","River/Stream",46.8339,-110.8767
-"MDEQ_WQ_WQX-M09MISSR70","Montana","Missouri River at York's Island Fishing Access","River/Stream",46.26614,-111.49271
-"MDEQ_WQ_WQX-M09MISSR32","Montana","Missouri River at Fairweather FAS","River/Stream",46.03372,-111.42169
-"MDEQ_WQ_WQX-C03BLACR05","Montana","Blackfoot River at Angivin FAS","River/Stream",46.89654,-113.763449
-"MDEQ_WQ_WQX-C03CLRWR20","Montana","Clearwater River at Harpers Lake Campground","River/Stream",47.01955,-113.38455
-"MDEQ_WQ_WQX-C03BKFNF10","Montana","Blackfoot River North Fork at Harry Morgan FAS","River/Stream",46.97973,-113.09974
-"MTVOLWQM_WQX-MO_CASCADE","Montana","Missouri River at Cascade FAS","River/Stream",47.28062,-111.69113
-"MTVOLWQM_WQX-MO_CRAIG","Montana","Missouri River side channel upstream from Lone Tree FAS","River/Stream",47.05415,-111.96701
-"MTVOLWQM_WQX-MO_DEAR_DS","Montana","Missouri River downstream confluence with Dearborn River","River/Stream",47.12791,-111.9109
-"MTVOLWQM_WQX-MO_DEAR_US","Montana","Missouri River upstream confluence with Dearborn River","River/Stream",47.12819,-111.91174
-"MTVOLWQM_WQX-MO_HARDY","Montana","Missouri River upstream of Sheep Creek at Hardy Bridge","River/Stream",47.16781,-111.83366
-"MTVOLWQM_WQX-MO_LPPC_DS","Montana","Missouri River downstream confluence with Little Prickly Pear Creek","River/Stream",47.02345,-112.01523
-"MTVOLWQM_WQX-MO_LPPC_US","Montana","Missouri River upstream confluence with Little Prickly Pear Creek","River/Stream",47.02281,-112.01527
-"MDEQ_WQ_WQX-C03MONTC10","Montana","Monture Creek 100 yards upstream of Monture Creek campground","River/Stream",47.126111,-113.146389
-"MDEQ_WQ_WQX-C03BLACR01","Montana","Blackfoot River 5.8 miles north of Bonner, past Angivin Park","River/Stream",46.900278,-113.755
-"MDEQ_WQ_WQX-M09PREPC02","Montana","Prickly Pear Creek at Montana Law Enforcement Acadamy","River/Stream",46.66123,-111.97619
-"MDEQ_WQ_WQX-M13SUNR64","Montana","Sun River below Pishkun Canal","River/Stream",47.61764,-112.69146
-"MTWTRSHD_WQX-SUN-ADBEC01","Montana","Adobe Creek at Fort Shaw","River/Stream",47.509722,-111.799167
-"MTWTRSHD_WQX-SUN-DUCKC01","Montana","Duck Creek at county road","River/Stream",47.516111,-111.886111
-"MTWTRSHD_WQX-SUN-MILCU01","Montana","Mill Coulee at highway","River/Stream",47.545,-111.709167
-"MTWTRSHD_WQX-SUN-MUDYC02","Montana","Muddy Creek","River/Stream",47.56762,-111.5503
-"MTWTRSHD_WQX-SUN-SUNR50","Montana","Sun River at Great Falls","River/Stream",47.4925,-111.319444
-"MTWTRSHD_WQX-SUN-SUNR51","Montana","Sun River at Ulm bridge","River/Stream",47.546944,-111.528333
-"MTWTRSHD_WQX-SUN-SUNR56","Montana","Sun River at Augusta","River/Stream",47.547222,-112.362222
-"MDEQ_WQ_WQX-M10SMTHR06","Montana","Smith River at Camp Baker, upstream Sheep Creek confluence","River/Stream",46.80217,-111.18026
-"MDEQ_WQ_WQX-M10CMASC04","Montana","Camas Creek at Hwy 360","River/Stream",46.67824,-111.19388
-"MDEQ_WQ_WQX-M09MISSR80","Montana","Missouri River u/s Wolf Creek bridge","River/Stream",47.0036,-111.999
-"MDEQ_WQ_WQX-M12MISSR97","Montana","Missouri River just upstream Lone Tree Fishing Access","River/Stream",47.0563,-111.96747
-"MDEQ_WQ_WQX-M12MISSR75","Montana","Missouri River at Cascade Fishing Access","River/Stream",47.28156,-111.68991
-"MTVOLWQM_WQX-HAB-MISSRBWB","Montana","Missouri River near Broadwater Bay","River/Stream",47.499964,-111.307761
-"MDEQ_WQ_WQX-M14GRENG03","Montana","Green Gulch near mouth","River/Stream",47.85682,-112.75741
-"MDEQ_WQ_WQX-M13FORNF04","Montana","Ford Creek North Fork below waterfall","River/Stream",47.41784,-112.71114
-"MDEQ_WQ_WQX-M09MISSR21","Montana","Missouri River near Clarkston and Fairweather Fishing Access","River/Stream",46.0417,-111.4254
-"MDEQ_WQ_WQX-M09MISSR18","Montana","Missouri River downstream of Hwy 287 bridge","River/Stream",46.3519,-111.523
-"MDEQ_WQ_WQX-M09MISSR77","Montana","Missouri River d/s Beaver Creek FAS","River/Stream",46.788636,-111.902631
-"MDEQ_WQ_WQX-M09MISSR23","Montana","Missouri River d/s Craig Frontage Rd bridge and u/s Little Prickly Pear Cr","River/Stream",47.02077,-112.01475
-"MDEQ_WQ_WQX-M12MISSR20","Montana","Missouri River at Mountain Palace FAS","River/Stream",47.16259,-111.823733
-"MDEQ_WQ_WQX-M12MISSR22","Montana","Missouri River just u/s of Sacajawea Island","River/Stream",47.513649,-111.3084
-"MDEQ_WQ_WQX-M12MISSR43","Montana","Missouri River at Rainbow Dam Tailrace","River/Stream",47.53405,-111.19879
-"MDEQ_WQ_WQX-M12MISSR08","Montana","Missouri River near Morony Dam","River/Stream",47.58581,-111.06059
-"MDEQ_WQ_WQX-M12MISSR10","Montana","Missouri River near Loma, MT","River/Stream",47.91465,-110.49796
-"MDEQ_WQ_WQX-M12MISSR17","Montana","Missouri River at Big Bend FAS","River/Stream",47.38975,-111.3386
-"MDEQ_WQ_WQX-M14SPRC01","Montana","Spring Creek at Choteau Park","River/Stream",47.813056,-112.18
-"MDEQ_WQ_WQX-M12MISSR60","Montana","Missouri River at Fort Benton City Park","River/Stream",47.82005,-110.664
-"MDEQ_WQ_WQX-M09MISSR26","Montana","Missouri River at Toston","River/Stream",46.17368,-111.44572
-"MDEQ_WQ_WQX-M09CROWC03","Montana","Crow Creek at mouth (Missouri River)","River/Stream",46.1937,-111.488
-"MDEQ_WQ_WQX-M09SIXTC03","Montana","Sixteenmile Creek near the mouth (Missouri River)","River/Stream",46.10832,-111.39507
-"MDEQ_WQ_WQX-M09PKPRC15","Montana","Prickly Pear Creek just downstream Hwy 282 crossing","River/Stream",46.51239,-111.94829
-"MDEQ_WQ_WQX-M09DRYC04","Montana","Dry Creek just upstream of mouth (Missouri River)","River/Stream",46.2418,-111.4691
-"MDEQ_WQ_WQX-M09DEEPC01","Montana","Deep Creek at mouth (Missouri River)","River/Stream",46.2895,-111.5212
-"MDEQ_WQ_WQX-M09MISSR27","Montana","Missouri River downstream Hauser Lake Dam","River/Stream",46.76517,-111.88947
-"MDEQ_WQ_WQX-M09LPPRC09","Montana","Little Prickly Pear Creek at Wolf Creek","River/Stream",47.00526,-112.07061
-"MDEQ_WQ_WQX-M09MISSR10","Montana","Missouri River at USGS gage below Holter Dam","River/Stream",46.995,-112.01
-"MDEQ_WQ_WQX-M12DRBNR01","Montana","Dearborn River at Hwy 287","River/Stream",47.198611,-112.093056
-"MDEQ_WQ_WQX-M10SMTHR05B","Montana","Smith River on state land just upstream of mouth","River/Stream",47.39994,-111.48016
-"MDEQ_WQ_WQX-M13SUNR08","Montana","Sun River just above 6th Street Bridge","River/Stream",47.49132,-111.32985
-"MDEQ_WQ_WQX-M12MISSR15","Montana","Missouri River at Central Avenue bridge in Great Falls","River/Stream",47.5083,-111.3094
-"MDEQ_WQ_WQX-M12MISSR47","Montana","Missouri River just downstream of Black Eagle Dam Tailrace","River/Stream",47.52128,-111.25749
-"MDEQ_WQ_WQX-M12MISSR41","Montana","Missouri River downstream Cochrane Dam Turbine Discharge","River/Stream",47.55413,-111.14826
-"MDEQ_WQ_WQX-M12MISSR38","Montana","Missouri River at Ryan Dam Tailrace","River/Stream",47.56662,-111.11597
-"MDEQ_WQ_WQX-M09DRYC01","Montana","Dry Creek just above the lower USFS boundary","River/Stream",46.24891,-111.28307
-"MDEQ_WQ_WQX-M12LNPNC01","Montana","Lone Pine Creek near mouth","River/Stream",47.2133,-112.4949
+"USGS-12301933","Montana",NA,"Stream",48.40066389,-115.3187194
+"USGS-12303500","Montana",NA,"Stream",48.4468611,-115.877136
+"USGS-4828121155315","Montana",NA,"Stream",48.4701361,-115.887486
+"USGS-12301250","Montana",NA,"Stream",48.8779472,-115.054461
+"USGS-12303498","Montana",NA,"Stream",48.4385,-115.87
+"MDEQ_WQ_WQX-K01PIPEC03","Montana","Pipe Creek at Timberlane Campground","River/Stream",48.48895,-115.52419
+"MDEQ_WQ_WQX-K01KOOTR08","Montana","Kootenai River at Riverside Park in Libby","River/Stream",48.39716,-115.55028
+"MTVOLWQM_WQX-KOOTCG","Montana","Kootenai River - Kootenai Campground","River/Stream",48.55962,-115.97698
+"MTVOLWQM_WQX-OBRIENC","Montana","O'Brien Creek","River/Stream",48.49006,-115.8485
+"MTVOLWQM_WQX-RIVERPARK","Montana","Kootenai River - Riverfront Park","River/Stream",48.39736,-115.54971
+"MTVOLWQM_WQX-ROOSPARK","Montana","Kootenai River - Roosevelt Park","River/Stream",48.47022,-115.88847
+"MTVOLWQM_WQX-RIALEX","Montana","Alexander Creek","River/Stream",48.392948,-115.32865
+"MTVOLWQM_WQX-RIBOBT","Montana","Bobtail Creek","River/Stream",48.427648,-115.603687
+"MTVOLWQM_WQX-RICALLA","Montana","Callahan Creek","River/Stream",48.455842,-115.892882
+"MTVOLWQM_WQX-RICEDA","Montana","Cedar Creek","River/Stream",48.430489,-115.629126
+"MTVOLWQM_WQX-RIDUNN","Montana","Dunn Creek","River/Stream",48.382946,-115.318923
+"MTVOLWQM_WQX-RILAKE","Montana","Lake Creek","River/Stream",48.450588,-115.879262
+"MTVOLWQM_WQX-RILIBBY","Montana","Libby Creek","River/Stream",48.388911,-115.537905
+"MTVOLWQM_WQX-RIOBRI","Montana","O'Brien Creek","River/Stream",48.4493,-115.866076
+"MTVOLWQM_WQX-RIPIPE","Montana","Pipe Creek","River/Stream",48.427363,-115.596495
+"MTVOLWQM_WQX-RIQTZ","Montana","Quartz Creek","River/Stream",48.43937,-115.635763
+"MTVOLWQM_WQX-RIRAIN","Montana","Rainy Creek","River/Stream",48.411574,-115.456291
+"MTVOLWQM_WQX-RIRUBY","Montana","Ruby Creek","River/Stream",48.518611,-115.951014
+"MTVOLWQM_WQX-RSBIG","Montana","Big Creek","River/Stream",48.74726,-115.352678
+"MTVOLWQM_WQX-RSBRIS","Montana","Bristow Creek","River/Stream",48.544461,-115.292924
+"MTVOLWQM_WQX-RSCANY","Montana","Canyon Creek","River/Stream",48.430615,-115.285534
+"MTVOLWQM_WQX-RSCRHS","Montana","Cripple Horse Creek","River/Stream",48.478831,-115.260144
+"MTVOLWQM_WQX-RSDODG","Montana","Dodge Creek","River/Stream",48.933683,-115.202869
+"MTVOLWQM_WQX-RSFIVM","Montana","Fivemile Creek","River/Stream",48.536029,-115.201948
+"MTVOLWQM_WQX-RSGEIB","Montana","Geibler Creek","River/Stream",48.626597,-115.295212
+"MTVOLWQM_WQX-RSMGUR","Montana","McGuire Creek","River/Stream",48.695756,-115.304828
+"MTVOLWQM_WQX-RSNFPS","Montana","North Fork Parsnip Creek","River/Stream",48.675608,-115.343238
+"MTVOLWQM_WQX-RSPARS","Montana","Parsnip Creek","River/Stream",48.664487,-115.342528
+"MTVOLWQM_WQX-RSSULL","Montana","Sullivan Creek","River/Stream",48.870832,-115.258124
+"MTVOLWQM_WQX-RSTENM","Montana","Tenmile Creek","River/Stream",48.595655,-115.204117
+"MTVOLWQM_WQX-RSTOBC","Montana","Tobacco River","River/Stream",48.897407,-115.122037
+"MTVOLWQM_WQX-RSURAL","Montana","Ural Creek","River/Stream",48.60206,-115.269965
+"MTVOLWQM_WQX-RSYUNG","Montana","Young Creek","River/Stream",48.96261,-115.196781
+"MTVOLWQM_WQX-KR-CONTROL-01","Montana","Kootenai River upstream of David Thompson Bridge","River/Stream",48.40759,-115.317
+"MTVOLWQM_WQX-KR-FP-09","Montana","Kootenai River tailrace site 6","River/Stream",48.36707,-115.32346
+"MTVOLWQM_WQX-KR-FP-10","Montana","Kootenai R. Dam D. geminata site 18","River/Stream",48.37036,-115.3178
+"MTVOLWQM_WQX-KR-RR-07","Montana","Kootenai R. Flower Pipe D. geminata site 3","River/Stream",48.40378,-115.56436
+"MTVOLWQM_WQX-KR-RR-08","Montana","Kootenai R. Flower Pipe D. geminata site 4","River/Stream",48.40541,-115.56957
+"MTVOLWQM_WQX-KR-TROY-11","Montana","Kootenai R. Flower Pipe D. geminata site 13","River/Stream",48.41201,-115.59269
+"MTVOLWQM_WQX-KR-TROY-12","Montana","Kootenai R. Flower Pipe D. geminata site 14","River/Stream",48.41133,-115.59824
+"MTVOLWQM_WQX-KR-TRT-02","Montana","Kootenai River Troy lower site 12","River/Stream",48.49096,-115.9072
+"MTVOLWQM_WQX-KR-TRT-03","Montana","Kootenai R. Troy D. geminata site 11","River/Stream",48.49279,-115.90824
+"MTVOLWQM_WQX-KR-TRT-04","Montana","Kootenai R. Troy D. geminata site 12","River/Stream",48.49245,-115.91158
+"MTVOLWQM_WQX-KR-TRT-05","Montana","Kootenai R. Troy D. geminata site 13","River/Stream",48.49481,-115.91248
+"MTVOLWQM_WQX-KR-TRT-06","Montana","Kootenai R. Troy D. geminata site 14","River/Stream",48.4948,-115.91751
+"USACENWS_WQX-LIBTW","Montana","Kootenai River at Libby Dam Tailwater","River/Stream",48.406555,-115.317283
+"PIBO_MP-114","Montana","025-08-I|Logan|R1|Kootenai|Three Rivers","River/Stream",48.560176,-116.022199
+"PIBO_MP-116","Montana","025-12-I|Gordon|R1|Kootenai|Three Rivers","River/Stream",48.445948,-115.984934
+"PIBO_MP-120","Montana","025-20-I|N. Callahan|R1|Kootenai|Three Rivers","River/Stream",48.434869,-116.01448
+"MT305B_SECONDARYDATA-LC-4","Montana","Lake Creek 04","River/Stream",48.35521,-115.84843
+"MT305B_SECONDARYDATA-LC-2","Montana","Lake Creek 02","River/Stream",48.32901,-115.86549
+"MT305B_SECONDARYDATA-LC-1","Montana","Lake Creek 01","River/Stream",48.30413,-115.86556
+"MT305B_SECONDARYDATA-SC-2","Montana","Stanley Creek 02","River/Stream",48.2813,-115.89307
+"MT305B_SECONDARYDATA-FC-1","Montana","Fairway Creek 01","River/Stream",48.28088,-115.89543
+"MDEQ_WQ_WQX-K01DUNNC01","Montana","Dunn Creek near mouth (Kootenai River)","River/Stream",48.38485,-115.31325
+"MDEQ_WQ_WQX-K01CANYC01","Montana","Canyon Creek at mouth (Lake Koocanusa)","River/Stream",48.43054,-115.28476
+"MDEQ_WQ_WQX-K01CHRSC01","Montana","Cripple Horse Creek near mouth (Lake Koocanusa)","River/Stream",48.47739,-115.25556
+"MDEQ_WQ_WQX-K01WARLC01","Montana","Warland Creek at mouth (Lake Koocanusa)","River/Stream",48.5031,-115.25566
+"MDEQ_WQ_WQX-K01FIVMC01","Montana","Fivemile Creek near mouth (Lake Koocanusa)","River/Stream",48.53586,-115.21038
+"MDEQ_WQ_WQX-K01TENMC01","Montana","Tenmile Creek near mouth (Lake Koocanusa)","River/Stream",48.59497,-115.20676
+"MDEQ_WQ_WQX-K01SHEPC01","Montana","Sheep Creek at mouth (Lake Koocanusa)","River/Stream",48.62304,-115.25804
+"MDEQ_WQ_WQX-K01MCGRC01","Montana","McGuire Creek at mouth (Lake Koocanusa)","River/Stream",48.69542,-115.30559
+"MDEQ_WQ_WQX-K01SUTTC01","Montana","Sutton Creek about 1.5 miles upstream of mouth (Lake Koocanusa)","River/Stream",48.76112,-115.24909
+"MDEQ_WQ_WQX-K01PNKHC01","Montana","Pinkham Creek at mouth (Lake Koocanusa)","River/Stream",48.82817,-115.24346
+"MDEQ_WQ_WQX-K01TOBCR01","Montana","Tobacco River below Grave and Fortine confluence","River/Stream",48.7997,-114.9531
+"MDEQ_WQ_WQX-K01YUNGC01","Montana","Young Creek near mouth (Lake Koocanusa)","River/Stream",48.96254,-115.19665
+"MDEQ_WQ_WQX-K01DODGC01","Montana","Dodge Creek at mouth (Lake Koocanusa)","River/Stream",48.9319,-115.19468
+"MDEQ_WQ_WQX-K01SLVNC01","Montana","Sullivan Creek at mouth (Lake Koocanusa)","River/Stream",48.87513,-115.23823
+"MDEQ_WQ_WQX-K01BOLDC01","Montana","Boulder Creek at mouth (Lake Koocanusa)","River/Stream",48.82039,-115.28964
+"MDEQ_WQ_WQX-K01GOLDC01","Montana","Gold Creek at mouth (Lake Koocanusa)","River/Stream",48.7847,-115.31538
+"MDEQ_WQ_WQX-K01BIGC01","Montana","Big Creek at mouth (Lake Koocanusa)","River/Stream",48.74742,-115.35283
+"MDEQ_WQ_WQX-K01PSNFC01","Montana","Parsnip Creek North Fork at mouth (Lake Koocanusa)","River/Stream",48.674,-115.339
+"MDEQ_WQ_WQX-K01PARSC01","Montana","Parsnip Creek at mouth (Lake Koocanusa)","River/Stream",48.66494,-115.34177
+"MDEQ_WQ_WQX-K01GBLRC01","Montana","Geibler Creek at mouth (Lake Koocanusa)","River/Stream",48.62742,-115.2944
+"MDEQ_WQ_WQX-K01URALC01","Montana","Ural Creek near mouth (Lake Koocanusa)","River/Stream",48.60193,-115.27017
+"MDEQ_WQ_WQX-K01BRISC01","Montana","Bristow Creek at road crossing","River/Stream",48.5444,-115.2931
+"MDEQ_WQ_WQX-K01BARRC01","Montana","Barron Creek near mouth (Lake Koocanusa)","River/Stream",48.51373,-115.30132
+"MDEQ_WQ_WQX-K01JCKSC01","Montana","Jackson Creek near mouth (Lake Koocanusa)","River/Stream",48.46793,-115.32693
+"MDEQ_WQ_WQX-K01ALEXC01","Montana","Alexander Creek at mouth (Kootenai River)","River/Stream",48.39271,-115.32935
+"MTVOLWQM_WQX-RIPMTR","Montana","Parmenter Creek","River/Stream",48.39888,-115.575819
+"MT305B_SECONDARYDATA-SC-15A","Montana","Stanley Creek 15A","River/Stream",48.24323,-115.90768
+"MT305B_SECONDARYDATA-SC-15B","Montana","Stanley Creek 15B","River/Stream",48.24307,-115.90728
+"MT305B_SECONDARYDATA-SC-15C","Montana","Stanley Creek 15C","River/Stream",48.24311,-115.90659
+"MT305B_SECONDARYDATA-SC-17A","Montana","Stanley Creek 17A","River/Stream",48.25097,-115.89722
