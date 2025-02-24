@@ -1,4 +1,14 @@
-# EPA Region 8 Assessment Tool
+# 2024_Region8_AnalysisTool
+R Shiny Application designed to assist EPA and Region 8 states and tribal
+nations with accessing, analyzing and visualizing Water Quality Portal (WQP) 
+data.  
+
+Future updates to this repository will be limited. Instead, a new version of 
+this R Shiny application, the 2025_Region8_AnalysisTool 
+(https://github.com/USEPA/2025_Region8_AnalysisTool), is being developed. 
+The new version of this tool will include and expand on the functionality 
+included in the 2024 version, and is being redesigned/rebuilt using the
+Golem Framework.
 
 ## Open-Source Code Policy
 
