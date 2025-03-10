@@ -1,0 +1,3 @@
+"MonitoringLocationIdentifier","State","MonitoringLocationName","MonitoringLocationTypeName","AU_ID","AU_NAME","DrinkingWater_Use","Ecological_Use","FishConsumption_Use","Recreational_Use","Other_Use","Dist_to_AU_m","LongitudeMeasure","LatitudeMeasure"
+"MTVOLWQM_WQX-HAB-BAIRRES","Montana","Bair Reservoir near Checkerboard","Reservoir","MT40A005_040","Bair Reservoir","Not Assessed","Not Assessed",NA,"Fully Supporting","Not Assessed",0,-110.560180000002,46.5796460000013
+"MDEQ_WQ_WQX-M24SELKW10","Montana","Selkirk Wetland inlet","Canal Irrigation","MT40A001_010","Musselshell River","Fully Supporting","Not Supporting",NA,"Not Supporting","Not Assessed",618.073395081237,-110.228535000002,46.4749450000013
