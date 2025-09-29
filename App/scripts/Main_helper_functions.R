@@ -7,7 +7,7 @@ library(data.table)
 library(collapse)
 library(dataRetrieval)
 library(tigris)
-library(TADA)
+library(EPATADA)
 
 ### A helper function to count the data
 count_fun <- function(dat, ...){
@@ -260,7 +260,7 @@ TADA_FindPotentialDuplicatesSingleOrg_poss <- possibly(TADA_FindPotentialDuplica
 TADA_FindPotentialDuplicatesMultipleOrgs_poss <- possibly(TADA_FindPotentialDuplicatesMultipleOrgs)
 TADA_FindQAPPApproval_poss <- possibly(TADA_FindQAPPApproval)
 TADA_FindQAPPDoc_poss <- possibly(TADA_FindQAPPDoc)
-TADA_FindContinuousData_poss <- possibly(TADA_FindContinuousData)
+TADA_FlagContinuousData_poss <- possibly(TADA_FlagContinuousData)
 TADA_FlagAboveThreshold_poss <- possibly(TADA_FlagAboveThreshold)
 TADA_FlagBelowThreshold_poss <- possibly(TADA_FlagBelowThreshold)
 TADA_HarmonizeSynonyms_poss <- possibly(TADA_HarmonizeSynonyms)

@@ -6,7 +6,7 @@ library(lubridate)
 library(data.table)
 library(collapse)
 library(dataRetrieval)
-library(TADA)
+library(EPATADA)
 library(tigris)
 library(tidycensus)
 

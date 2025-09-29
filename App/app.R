@@ -19,7 +19,7 @@ library(leaflet)
 library(leaflet.extras)
 library(plotly)
 library(zip)
-library(TADA)
+library(EPATADA)
 library(tigris)
 library(tidycensus)
 library(spsComps)
@@ -1591,21 +1591,21 @@ server <- function(input, output, session){
         
       })
       
-      # TADA_FindContinuousData
+      # TADA_FlagContinuousData
       observe({
         req(reVal$WQP_FindQAPPDoc)
         
-        # message("Function: TADA_FindContinuousData")
+        # message("Function: TADA_FlagContinuousData")
         
-        showModal(modalDialog(title = "Run TADA_FindContinuousData", 
+        showModal(modalDialog(title = "Run TADA_FlagContinuousData", 
                               footer = NULL))
         
-        temp_dat <- TADA_FindContinuousData_poss(
+        temp_dat <- TADA_FlagContinuousData_poss(
           .data = reVal$WQP_FindQAPPDoc
         )
         
         if (is.null(temp_dat)){
-          temp_dat <- TADA_FindContinuousData_temp
+          temp_dat <- TADA_FlagContinuousData_temp
         }
         
         reVal$WQP_FindContinuousData <- temp_dat
